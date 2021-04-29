@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool canCross(vector<int>& stones) {
+        int n=stones.size();
+        vector<vector<int>> dp(n,vector<int>(n));  //dp[i][k]表示第i步上一次跳跃距离为k
+        dp[0][0]=true;
+
+        for(int i=1;i<n;i++){ 
+            if(stones[i]-stones[i-1]>i){   //第i步最多只能跳i距离 i从1开始 超过直接false
+                return false;
+            }
+        }
+
+        for(int i=1;i<n;i++){
+            for(int j=i-1;j>=0;j--){
+                int k=stones[i]-stones[j];
+                if(k>j+1){   //第j步最多跳出j+1步 j从0开始
+                    break;
+                }
+                dp[i][k]=dp[j][k-1] || dp[j][k] || dp[j][k+1];
+                if(i==n-1 && dp[i][k]){
+                    return true;
+                }
+
+            }
+        }
+        return false;
+
+
+    }
+};
