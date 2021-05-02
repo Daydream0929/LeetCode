@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int leastBricks(vector<vector<int>>& wall) {
+        unordered_map<int,int> mp;
+
+        for(auto& walls:wall){
+            int n=walls.size();
+            int sum=0;
+            for(int i=0;i<n-1;i++){  //统计右边缘距离，所以最后一个不统计
+                sum+=walls[i];
+                mp[sum]++;
+
+            }
+        }
+        int maxmp=0;
+        for(auto [_,c]:mp){
+            maxmp=max(maxmp,c);
+        }
+        return wall.size()-maxmp;
+
+    }
+};
