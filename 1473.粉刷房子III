@@ -1,3 +1,7 @@
+题解：https://leetcode-cn.com/problems/paint-house-iii/solution/fen-shua-fang-zi-iii-by-leetcode-solutio-powb/
+
+
+
 class Solution {
 private:
     static constexpr int INFTY=INT_MAX/2;
