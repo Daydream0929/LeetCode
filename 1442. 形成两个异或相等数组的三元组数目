@@ -1,0 +1,29 @@
+const int N=305;
+    int q[N];
+class Solution {
+
+public:
+    int countTriplets(vector<int>& arr) {
+        int n=arr.size();
+        if(n<2) return 0;
+        q[0]=0;
+        for(int i=0;i<arr.size();i++){
+            q[i+1]=q[i]^arr[i];
+        }
+        int res=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;++j){
+                for(int k=j;k<n;++k){
+                    if(q[i]==q[k+1])
+                        res++;
+                }
+            }
+        }
+
+        
+        return res;
+
+
+
+    }
+};
