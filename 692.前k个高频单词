@@ -1,0 +1,41 @@
+struct node{
+    string s;
+    int x;
+};
+struct cmp{
+    bool operator() (node a ,node b){
+        if(a.x==b.x){
+            return a.s>b.s;
+        }
+        else {
+            return a.x<b.x;
+        }
+    }
+};
+
+class Solution {
+public:
+   vector<string> topKFrequent(vector<string>& words, int k) {
+        unordered_map<string,int> mp;
+        for(int i=0;i<words.size();i++){
+            mp[words[i]]++;
+        }
+        priority_queue<node,vector<node>,cmp> p;
+        vector<string> res;
+        for(auto x:mp){
+            node n;
+            n.s=x.first;
+            n.x=x.second;
+            p.push(n);
+        }
+        while(k && !p.empty()){
+            k--;
+            node m=p.top();
+            res.push_back(m.s);
+            p.pop();
+        }
+        return res;
+
+
+    }
+};
